@@ -1,9 +1,12 @@
 return {
   "nyngwang/nvimgelion",
-  lazy = false,    -- Load immediately on startup
-  priority = 1000, -- Load before other plugins
+  lazy = false,
+  priority = 1000,
+  -- Only load this plugin if the operating system is macOS
+  cond = function()
+    return (vim.uv or vim.loop).os_uname().sysname == "Darwin"
+  end,
   config = function()
-    -- This command actually activates the theme
     vim.cmd([[colorscheme nvimgelion]])
   end
 }
